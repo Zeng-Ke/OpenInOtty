@@ -7,9 +7,14 @@ A minimal macOS Finder toolbar app that opens the current directory in [Otty](ht
 > Inspired by [OpenInTerminal-Lite](https://github.com/Ji4n1ng/OpenInTerminal).  
 > If you already use OpenInTerminal and switch between several terminals, you can use upstream Otty support instead — see **OpenInOtty vs OpenInTerminal** below.
 
-![macOS 12+](https://img.shields.io/badge/macOS-12%2B-blue) ![Swift 5](https://img.shields.io/badge/Swift-5-orange) ![License MIT](https://img.shields.io/badge/license-MIT-green)
+![macOS 12+](https://img.shields.io/badge/macOS-12%2B-blue) ![Universal](https://img.shields.io/badge/arch-x86__64%20%7C%20arm64-blue) ![Swift 5](https://img.shields.io/badge/Swift-5-orange) ![License MIT](https://img.shields.io/badge/license-MIT-green)
 
 ![OpenInOtty demo](assets/openinotty-demo.gif)
+
+> **Intel Mac supported** — this fork builds a **universal binary (x86_64 + arm64)**.
+> Upstream GitHub releases are arm64-only and won't run on Intel Macs. Grab
+> `OpenInOtty-Universal-1.0.zip` from [Releases](https://github.com/Zeng-Ke/OpenInOtty/releases)
+> and it runs on both Intel and Apple Silicon.
 
 ---
 
@@ -83,6 +88,18 @@ Otty is usually at `/Applications/Otty.app`. Any location Launch Services can fi
 
    Or open `OpenInOtty.xcodeproj` in Xcode, choose **Product → Archive**, and export manually.
 
+   > The Release configuration pins `ARCHS = "arm64 x86_64"`, so the build is a **universal binary**
+   > that runs on Intel and Apple Silicon alike.
+
+### Option B — Download the universal release
+
+1. Download `OpenInOtty-Universal-1.0.zip` from [Releases](https://github.com/Zeng-Ke/OpenInOtty/releases).
+2. Unzip, then copy to Applications:
+   ```bash
+   cp -R OpenInOtty.app /Applications/
+   ```
+3. Continue with **Add to Finder toolbar** below.
+
 ### Add to Finder toolbar
 
 Hold **⌘ (Command)** and drag `/Applications/OpenInOtty.app` into the Finder toolbar.
@@ -114,6 +131,7 @@ Use this section when installing, verifying, or debugging OpenInOtty on a user's
 | Otty bundle ID | `io.appmakes.otty` |
 | Source of truth | `OpenInOtty/main.swift` (single-file app) |
 | UI type | `LSUIElement = true` (no Dock / menu bar icon) |
+| Architecture | Universal (x86_64 + arm64); Release pins `ARCHS = "arm64 x86_64"` |
 
 ### Install (agent checklist)
 

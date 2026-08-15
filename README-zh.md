@@ -7,9 +7,14 @@
 > 灵感来自 [OpenInTerminal-Lite](https://github.com/Ji4n1ng/OpenInTerminal)。  
 > 若你已经在用 OpenInTerminal 并切换多种终端，也可以直接用上游的 Otty 支持——见下方 **OpenInOtty 和 OpenInTerminal 怎么选**。
 
-![macOS 12+](https://img.shields.io/badge/macOS-12%2B-blue) ![Swift 5](https://img.shields.io/badge/Swift-5-orange) ![License MIT](https://img.shields.io/badge/license-MIT-green)
+![macOS 12+](https://img.shields.io/badge/macOS-12%2B-blue) ![Universal](https://img.shields.io/badge/arch-x86__64%20%7C%20arm64-blue) ![Swift 5](https://img.shields.io/badge/Swift-5-orange) ![License MIT](https://img.shields.io/badge/license-MIT-green)
 
 ![OpenInOtty demo](assets/openinotty-demo.gif)
+
+> **支持 Intel Mac** — 本 fork 构建的是 **Universal 双架构（x86_64 + arm64）**。
+> 上游 GitHub Release 只有 arm64，Intel 电脑跑不了。从这里
+> [Releases](https://github.com/Zeng-Ke/OpenInOtty/releases) 下载
+> `OpenInOtty-Universal-1.0.zip`，Intel 和 Apple Silicon 都能用。
 
 ---
 
@@ -83,6 +88,18 @@ Otty 通常装在 `/Applications/Otty.app`。装在 Launch Services 能扫到的
 
    或用 Xcode 打开 `OpenInOtty.xcodeproj`，选择 **Product → Archive** 后导出。
 
+   > Release 配置固定了 `ARCHS = "arm64 x86_64"`，编译出来是 **Universal 双架构**，
+   > Intel 和 Apple Silicon 都能跑。
+
+### 方式 B — 直接下载 Universal 安装包（最快，Intel / Apple Silicon 通用）
+
+1. 从 [Releases](https://github.com/Zeng-Ke/OpenInOtty/releases) 下载 `OpenInOtty-Universal-1.0.zip`。
+2. 解压后拷贝到 Applications：
+   ```bash
+   cp -R OpenInOtty.app /Applications/
+   ```
+3. 继续按下方 **添加到 Finder 工具栏** 操作。
+
 ### 添加到 Finder 工具栏
 
 按住 **⌘ (Command)**，把 `/Applications/OpenInOtty.app` 拖到 Finder 工具栏。
@@ -114,6 +131,7 @@ tccutil reset AppleEvents com.local.OpenInOtty
 | Otty bundle ID | `io.appmakes.otty` |
 | 源码真相 | `OpenInOtty/main.swift`（单文件 app） |
 | UI 类型 | `LSUIElement = true`（无 Dock / 菜单栏图标） |
+| 架构 | Universal（x86_64 + arm64）；Release 固定 `ARCHS = "arm64 x86_64"` |
 
 ### 安装清单（agent）
 
